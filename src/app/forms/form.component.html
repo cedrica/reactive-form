@@ -1,0 +1,32 @@
+<div class="panel panel-primary">
+    <div class="panel-body">
+        Reactive Form
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal"
+        novalidate
+        (ngSubmit)="save()"
+        [formGroup]="customerForm">
+            <fieldset>
+                <div class="form-group" [ngClass="{'has-error' = (customerForm.get('firstName'.touched) ||
+                                                     customerForm.get('firstName'.dirty) &&
+                                                      customerForm.get('firstName'.error))}"]>
+                    <label class="col-md-2 control-label" for="firstname">Firstname</label>
+                    <input class="form-control"
+                    id = "firstname"
+                    type="text"
+                    placeholder="firstname"
+                    formControlName="firstName">
+                    <span  class="help-block" *ngIf="(customerForm.get('firstName'.touched) ||
+                                                     customerForm.get('firstName'.dirty) &&
+                                                      customerForm.get('firstName'.error))">
+                        <span *ngIf="customerForm.get('firstName').errors.required">Please enter firstname</span>
+                        <span *ngIf="customerForm.get('lastName').errors.required">Min length should be 3</span>
+                    </span>
+
+                </div>
+            </fieldset>
+
+        </form>
+    </div>
+</div>
